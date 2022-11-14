@@ -24,4 +24,9 @@ public class DemoControl {
     public String getServerPort(){
         return "Hello Nacos Discovery"+serverPort;
     }
+
+    @GetMapping(value = "gatewayAccess")
+    public String gatewayAccess(){
+        return "gatewayAccess~~~"+serverPort;
+    }
 }

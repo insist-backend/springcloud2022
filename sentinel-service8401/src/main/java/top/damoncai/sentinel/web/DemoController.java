@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import top.damoncai.sentinel.FlowLimitHandler;
 import top.damoncai.sentinel.service.TestService;
 
 @RestController
@@ -35,5 +36,11 @@ public class DemoController {
     //处理异常方法，方法签名要和对应的接口方法保持一致
     public String handler_HotKey(String hot1, String hot2, String hot3, BlockException exception){
         return "系统繁忙稍后重试。。";
+    }
+
+    @GetMapping("testC")
+    @SentinelResource(value = "testC", blockHandler = "testCHandler", blockHandlerClass = FlowLimitHandler.class)
+    public String testC() {
+        return "damoncai ~~";
     }
 }
